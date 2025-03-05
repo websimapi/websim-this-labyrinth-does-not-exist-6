@@ -1,0 +1,278 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.generator-panel {
+  padding: 20px;
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #333;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 5px;
+  color: #f0f0f0;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.file-input-container {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+.file-input-label {
+  display: block;
+  padding: 10px;
+  background-color: #3a3a3a;
+  color: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.file-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.file-name {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #553c9a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #6f52b5;
+}
+
+button:disabled {
+  background-color: #444;
+  cursor: not-allowed;
+}
+
+.loading-indicator {
+  display: inline-block;
+  margin-left: 10px;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.labyrinth-card {
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.labyrinth-card:hover {
+  transform: translateY(-5px);
+}
+
+.labyrinth-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.labyrinth-content {
+  padding: 15px;
+}
+
+.labyrinth-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.labyrinth-description {
+  font-size: 14px;
+  color: #bbb;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.labyrinth-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+}
+
+.game-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: #000;
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1001;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.game-title {
+  color: white;
+  font-size: 18px;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.mobile-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  grid-template-rows: repeat(3, 60px);
+  gap: 5px;
+  z-index: 1001;
+}
+
+.mobile-controls button {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(85, 60, 154, 0.7);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+}
+
+.mobile-controls button:active {
+  background-color: rgba(111, 82, 181, 0.7);
+}
+
+.up-button { grid-column: 2; grid-row: 1; }
+.left-button { grid-column: 1; grid-row: 2; }
+.right-button { grid-column: 3; grid-row: 2; }
+.down-button { grid-column: 2; grid-row: 3; }
+
+.control-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  .form-container {
+    padding: 0 10px;
+  }
+  
+  button {
+    width: 100%;
+  }
+}
+
